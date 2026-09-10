@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Pro - Carrito de Compras</title>
+    <!-- Vinculación con css -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <header>
+        <!-- Menú principal superior -->
+        <nav class="navbar">
+            <div class="logo">Ticket Pro</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <div class="carrito">
+                <i class="fas fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)
+            </div>
+        </nav>
+
+        <!-- Sub-menú de autenticación -->
+        <div class="auth-links">
+            <a href="login.html">Iniciar sesión</a> |
+            <a href="registro.html">Registrar usuario</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Hero del Carrito -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Tu Carrito de Compras</h1>
+                <p>Revisa tus tickets seleccionados antes de proceder al pago.</p>
+            </div>
+        </section>
+
+        <!-- Seccion donde se cargaran las entradas seleccionadas en evento.html y el total a pagar-->
+        <section class="seccion-evento">
+            <h2>Entradas Seleccionadas</h2>
+            
+            <ul id="lista-carrito" class="lista-carrito">
+                
+            </ul>
+
+            <div class="resumen-compra">
+                <p>Total a Pagar: <strong id="total-carrito">$ 0</strong></p>
+                <button id="btn-procesar-pago" class="btn-primario">Proceder al Pago</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Ticket Pro</div>
+            <div class="footer-categorias">
+                <span>Categoría Conciertos</span> |
+                <span>Categoría Teatro</span> |
+                <span>Categoría Deportes</span>
+            </div>
+            <div class="contacto">
+                <p>Mantente en contacto | Únete a nuestro equipo</p>
+                <form action="#" class="contacto-form">
+                    <input type="email" placeholder="Ingresa Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+<script src="JS/1-redireccion.js"></script>
+<script src="JS/2-datos.js"></script>
+<script src="JS/5-carrito.js"></script>
+</body>
+</html>
