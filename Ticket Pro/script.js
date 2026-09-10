@@ -21,6 +21,8 @@ const bienvenidaUsuario = document.getElementById("bienvenida-usuario");
 const bienvenidaCorreo = document.getElementById("bienvenida-correo");
 const btnSalir = document.getElementById("btn-salir");
 
+const btnVolver = document.getElementById("btn-volver")
+
 // Obtiene la lista de usuarios registrados desde localStorage.
 // Si todavía no existe, la crea con el usuario base incluido.
 function obtenerUsuarios() {
@@ -151,5 +153,12 @@ inputContraseña.addEventListener("keydown", (evento) => {
         btnIngresar.click();
     }
 });
+
+btnVolver.addEventListener("click", () => {
+    setTimeout(() => {
+        window.location.href = "index.html"
+    },3000)
+    alert("Redirijiendo a página principal, por favor espere un par de segundos...")
+})
 
 btnSalir.addEventListener("click", cerrarSesion);
