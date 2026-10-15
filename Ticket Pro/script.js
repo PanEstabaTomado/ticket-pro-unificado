@@ -26,9 +26,11 @@ const btnVolver = document.getElementById("btn-volver")
 // Obtiene la lista de usuarios registrados desde localStorage.
 // Si todavía no existe, la crea con el usuario base incluido.
 function obtenerUsuarios() {
-    const usuariosGuardados = localStorage.getItem("usuarios");
-    if (usuariosGuardados) {
-        return JSON.parse(usuariosGuardados);
+    try {
+        const guardados = localStorage.getItem("usuarios");
+        if (guardados) return JSON.parse(guardados);
+    } catch (error) {
+        console.error("Datos corruptos, se reinicia la lista.", error);
     }
     const listaInicial = [USUARIO_BASE];
     localStorage.setItem("usuarios", JSON.stringify(listaInicial));
