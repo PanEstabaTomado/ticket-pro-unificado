@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Pro - Inicio</title>
+    <!--Vinculación con css -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    
+    <header>
+        <!-- Menú principal superior -->
+         <nav class="navbar">
+             <img src="Logo.png" style="height: 90px">
+            <div class="logo">Ticket Pro</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="https://example.com/">Eventos</a></li>
+                <li><a href="https://example.com/">Nosotros</a></li>
+                <li><a href="https://example.com/">Blogs</a></li>
+                <li><a href="https://example.com/">Contacto</a></li>
+            </ul>
+            <div class="carrito">
+                <i class="fas fa-shopping-cart" id="icono-carrito"></i> Carrito (<span id="cart-count">0</span>)
+            </div>
+         </nav>
+
+         <!--Sub-menú de auntenticacion-->
+         <div class="auth-links">
+            <a href="inicioS.html">Iniciar sesión</a> |
+            <a href="registro.html">Registrar usuario</a>
+         </div>
+    </header>
+
+    <main>
+        <!-- Sección Principal -->
+         <section class="hero">
+            <div class="hero-content">
+                <h1>TIENDA ONLINE DE TICKETS</h1>
+                <P>Ticket Pro es un sitio web en donde puedes navegar de forma rápida para los eventos que estes buscando.
+                    Descubre y reserva tus entradas para los mejores eventos
+                    del año. ¡No te quedes fuera nunca más!</P>
+                <button class="btn-primario">Ver Eventos</button>
+            </div>
+            <div class="imagen-portada placeholder">
+                <span><img src="https://st2.depositphotos.com/1177973/8784/i/450/depositphotos_87846188-stock-photo-woman-buying-tickets.jpg" style="height: 400px;" alt=""></span>
+            </div>
+         </section>
+
+         <!--Grilla de Eventos (Productos)-->
+         <section class="seccion-evento">
+            <h2>Próximos Eventos</h2>
+            <div class="grilla-eventos">
+
+                <!--Tarjeta de evento 1 -->
+                <article class="carta-evento" data-id="evento-1">
+                    <div class="img-evento placeholder">
+                        <!-- Aquí va una imagen para el evento de rock -->
+                        <span>
+                            <img src="https://www.rockandpop.cl/wp-content/uploads/2024/01/mxmf-Fest-768x432.webp" style="height: 200px;" alt="">
+                        </span></div>
+                    
+                    <div class="evento-info">
+                        <h3>Concierto de Rock</a></h3>
+                        <p class="atributos">Fecha: 25 Oct | Estadio Nacional</p>
+                        <p class="precio">$50.000</p>
+                    </div>
+                    <div class="accion">
+                        <button class="btn-agregar" data-id="evento-1">Añadir al Carrito</button>
+                        <!--Requerimiento 5 Guardar en favoritos-->
+                        <button class="btn-fav" aria-label="Añadir a favoritos"><i class="far fa-heart"></i></button>
+                    </div>
+                </article>
+
+
+                <!-- Tajeta de Evento 2 -->
+                <article class="carta-evento">
+                    <div class="img-evento placeholder">
+                        <span>
+                            <!-- Aquí va una imagen para el evento de teatro -->
+                        <img src="https://static.nationalgeographicla.com/files/styles/image_3200/public/mm9901_220313_01614.jpg?w=1600" style="height: 250px;" alt="">
+                    </span></div>
+                    <div class="evento-info">
+                        <h3>Obra de Teatro</h3>
+                        <p class="atributos">Fecha: 02 Nov | Teatro Municipal</p>
+                        <p class="precio">$15.000</p>
+                    </div>
+                    <div class="accion">
+                        <button class="btn-agregar" data-id="evento-2">Añadir al Carrito</button>
+                        <!--Requerimiento 5 Guardar en favoritos-->
+                        <button class="btn-fav" aria-label="Añadir a favoritos"><i class="far fa-heart"></i></button>
+                    </div>
+                </article>
+
+                <!-- Aqui mas articulos que van a seguir el mismo patron-->
+
+            </div>
+         </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Ticket Pro</div>
+            <div class="footer-categorias">
+                <span>Categoría Conciertos</span> |
+                <span>Categoría Teatro</span> |
+                <span>Categoría Deportes</span>
+            </div>
+            <div class="contacto">
+                <p>Mantente en contacto | Únete a nuestro equipo</p>
+                <form action="#" class="contacto-form">
+                    <input type="email" placeholder="Ingresa Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+<script src="JS/1-redireccion.js"></script>
+<script src="JS/2-datos.js"></script>
+</body>
+</html>
