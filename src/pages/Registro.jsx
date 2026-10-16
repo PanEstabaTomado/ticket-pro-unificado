@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { obtenerUsuarios, guardarUsuarios, capitalizarNombre, calcularEdad } from '../utils/Usuarios'
 
 function Registro() {
@@ -26,7 +26,7 @@ function Registro() {
       return setMensaje({ texto: 'Ese nombre de usuario ya está en uso.', tipo: 'error' })
 
     const esMenorDeEdad = calcularEdad(fecha) < 18
-    // La propiedad se llama "correo", había un error cuando haciamos el registro antes, quedaba como correo_Nuevo en lugar de correo.
+    // La propiedad se llama "correo" (antes quedaba con otro nombre y el login no la encontraba).
     guardarUsuarios([...usuarios, { nombre: nombreFinal, correo: correo.trim(), contraseña, esMenorDeEdad }])
 
     if (esMenorDeEdad) return alert('Usuarios Menores de edad no pueden usar los servicios de esta página.')
@@ -36,34 +36,91 @@ function Registro() {
   }
 
   return (
-    <div className='pagina-auth'>
+    <div className="pagina-auth">
       <header>
         <h1 id="titulo_pagina">CREAR NUEVO USUARIO</h1>
+        <p id="subtitulo">Complete los datos para registrar una cuenta</p>
       </header>
+
       <main>
         <section className="datos_sesion_nombre" id="form-registro">
+          <h2>Ingrese nombre de usuario</h2>
           <label htmlFor="reg-nombre">Nombre</label>
           <input
             type="text"
             id="reg-nombre"
+            placeholder="Escriba un nombre de usuario."
+            autoComplete="username"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
-          {/*Aquí nos falta colocar lo mismo con correo, contraseña, la confirmación y la fecha de Nacimiento.*/}
-          {/* Lo hago después, estoy cansado por esta noche. */}
+
+          <h2>Ingrese correo electrónico</h2>
+          <label htmlFor="reg-correo">Correo electrónico</label>
+          <input
+            type="email"
+            id="reg-correo"
+            placeholder="Escriba un correo electrónico."
+            autoComplete="email"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+          />
+
+          <h2>Ingrese contraseña</h2>
+          <label htmlFor="reg-contraseña">Contraseña</label>
           <input
             type={mostrar ? 'text' : 'password'}
             id="reg-contraseña"
+            placeholder="Escriba una contraseña."
+            autoComplete="new-password"
             value={contraseña}
             onChange={(e) => setContraseña(e.target.value)}
           />
+
+          <h2>Confirme contraseña</h2>
+          <label htmlFor="reg-confirmar">Confirmar contraseña</label>
           <input
-            type="checkbox"
-            checked={mostrar}
-            onChange={(e) => setMostrar(e.target.checked)}
+            type={mostrar ? 'text' : 'password'}
+            id="reg-confirmar"
+            placeholder="Repita la contraseña."
+            autoComplete="new-password"
+            value={confirmar}
+            onChange={(e) => setConfirmar(e.target.value)}
           />
-          <button onClick={registrar}>Crear cuenta</button>
-          <p className={mensaje.tipo === 'ok' ? 'mensaje-ok' : 'mensaje-error'}>{mensaje.texto}</p>
+
+          <div className="opciones">
+            <label className="check-label">
+              <input
+                type="checkbox"
+                id="reg-mostrar-contraseña"
+                checked={mostrar}
+                onChange={(e) => setMostrar(e.target.checked)}
+              />
+              Mostrar contraseña
+            </label>
+          </div>
+
+          <h2>Ingrese fecha de nacimiento</h2>
+          <label htmlFor="reg-fecha-nacimiento">Fecha de nacimiento</label>
+          <input
+            type="date"
+            id="reg-fecha-nacimiento"
+            autoComplete="bday"
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+
+          <button id="btn-registrar" onClick={registrar}>Crear cuenta</button>
+          <p
+            id="registro-mensaje"
+            className={mensaje.tipo === 'ok' ? 'mensaje-ok' : 'mensaje-error'}
+          >
+            {mensaje.texto}
+          </p>
+
+          <p className="enlace-alternativo">
+            <Link to="/login">¿Ya tiene una cuenta? Inicie sesión</Link>
+          </p>
         </section>
       </main>
     </div>
