@@ -4,28 +4,33 @@
 
 .pagina-auth {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: bisque;
-    color: black;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #0b0b0e;
+    background-image: radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.12), transparent 50%);
+    color: #f4f4f5;
     min-height: 100vh;
 }
 
 .pagina-auth header {
-    background-color: burlywood;
-    color: #2b1a05;
+    position: static;
+    background: #101014;
+    color: #f4f4f5;
     text-align: center;
     padding: 30px 20px;
+    border-bottom: 1px solid #ca8a04;
+    backdrop-filter: none;
 }
 
 .pagina-auth header h1 {
     margin: 0 0 10px;
-    color: #4a2e00;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    color: #facc15;
+    text-shadow: 0 0 16px rgba(250, 204, 21, 0.3);
     letter-spacing: 1px;
 }
 
 .pagina-auth header p {
     margin: 0;
+    color: #a1a1aa;
 }
 
 .pagina-auth main {
@@ -35,11 +40,12 @@
 }
 
 .datos_sesion_nombre {
-    background-color: aliceblue;
+    background-color: #15151a;
+    border: 1px solid #2c2c35;
     padding: 25px;
     margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0 2px 6px rgba(2, 0, 0, 0.5);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
 }
 
 .oculto {
@@ -49,12 +55,14 @@
 .pagina-auth h2 {
     margin-top: 5px;
     margin-bottom: 5px;
+    color: #fde047;
 }
 
 .pagina-auth label {
     display: block;
     margin-bottom: 4px;
     font-weight: bold;
+    color: #d4d4d8;
 }
 
 .opciones {
@@ -75,23 +83,26 @@
 .check-label input {
     width: auto;
     margin: 0;
+    accent-color: #facc15;
 }
 
 .pagina-auth button {
     margin: 5px;
     text-align: center;
-    background-color: black;
-    color: white;
+    background: linear-gradient(135deg, #ca8a04, #facc15);
+    color: #1a1400;
+    font-weight: bold;
     border: none;
     padding: 10px 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
+    transition: box-shadow 0.2s, transform 0.15s;
 }
 
 .pagina-auth button:hover {
-    background-color: gray;
-    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
 }
 
 .pagina-auth input {
@@ -99,14 +110,16 @@
     max-width: 350px;
     padding: 10px;
     margin: 10px 5px 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: #0b0b0e;
+    color: #f4f4f5;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
     font-size: 1rem;
 }
 
 .pagina-auth input:focus {
-    outline: 2px solid burlywood;
-    border-color: burlywood;
+    outline: 2px solid #facc15;
+    border-color: #facc15;
 }
 
 .pagina-auth #datos-registrados {
@@ -115,11 +128,11 @@
 }
 
 .mensaje-ok {
-    color: #1a7a1a;
+    color: #4ade80;
 }
 
 .mensaje-error {
-    color: #c0392b;
+    color: #f87171;
 }
 
 .enlace-alternativo {
@@ -127,7 +140,7 @@
 }
 
 .enlace-alternativo a {
-    color: #4a2e00;
+    color: #facc15;
     font-weight: bold;
     text-decoration: none;
 }

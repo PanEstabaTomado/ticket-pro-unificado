@@ -1,3 +1,5 @@
+
+
 export const USUARIO_BASE = {
   nombre: 'magaq',
   contraseña: 'pruebasdefullstack2',
@@ -28,4 +30,28 @@ export function validarCredenciales(nombre, contraseña) {
       usuario.nombre.toLowerCase() === nombre.toLowerCase() &&
       usuario.contraseña === contraseña
   )
+}
+
+export function capitalizarNombre(nombre) {
+  return nombre
+    .trim()
+    .toLowerCase()
+    .split(' ')
+    .filter((palabra) => palabra !== '')
+    .map((palabra) => palabra[0].toUpperCase() + palabra.slice(1))
+    .join(' ')
+}
+
+
+export function calcularEdad(fechaNacimiento) {
+  const hoy = new Date()
+  const nacimiento = new Date(fechaNacimiento)
+  let edad = hoy.getFullYear() - nacimiento.getFullYear()
+  const yaCumplio =
+    hoy.getMonth() > nacimiento.getMonth() ||
+    (hoy.getMonth() === nacimiento.getMonth() && hoy.getDate() >= nacimiento.getDate())
+  if (!yaCumplio) {
+    edad--
+  }
+  return edad
 }
