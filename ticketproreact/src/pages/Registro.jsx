@@ -13,23 +13,35 @@ function Registro() {
   const [mensaje, setMensaje] = useState({ texto: '', tipo: '' })
 
   const registrar = () => {
+    // Regla de espacios en la contraseña
+    const passLimpia = contraseña.trim()
+
     if (nombre.trim() === '') return setMensaje({ texto: 'El nombre no puede estar vacío.', tipo: 'error' })
-    if (contraseña.trim() === '' || contraseña.length !== 8)
-      return setMensaje({ texto: 'Contraseña incorrecta', tipo: 'error' })
-    if (contraseña !== confirmar) return setMensaje({ texto: 'Las contraseñas no coinciden.', tipo: 'error' })
+    
+    // Nuevo mensaje de error por longitud de contraseña
+    if (passLimpia === '' || passLimpia.length !== 8)
+      return setMensaje({ texto: 'La contraseña debe tener exactamente 8 caracteres.', tipo: 'error' })
+    
+    if (passLimpia !== confirmar.trim()) return setMensaje({ texto: 'Las contraseñas no coinciden.', tipo: 'error' })
+    
     if (!correo.trim().toLowerCase().endsWith('@gmail.com')) return alert('Correo electrónico invalido')
+    
     if (fecha === '') return setMensaje({ texto: 'Debe ingresar una fecha de nacimiento.', tipo: 'error' })
 
     const nombreFinal = capitalizarNombre(nombre)
     const usuarios = obtenerUsuarios()
+    
     if (usuarios.some((u) => u.nombre.toLowerCase() === nombreFinal.toLowerCase()))
       return setMensaje({ texto: 'Ese nombre de usuario ya está en uso.', tipo: 'error' })
 
     const esMenorDeEdad = calcularEdad(fecha) < 18
-    // La propiedad se llama "correo", había un error cuando haciamos el registro antes, quedaba como correo_Nuevo en lugar de correo.
-    guardarUsuarios([...usuarios, { nombre: nombreFinal, correo: correo.trim(), contraseña, esMenorDeEdad }])
+    
+    // COMPROBACIÓN ANTES DE GUARDAR
+    if (esMenorDeEdad) {
+      return alert('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+    }
 
-    if (esMenorDeEdad) return alert('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+    guardarUsuarios([...usuarios, { nombre: nombreFinal, correo: correo.trim(), contraseña: passLimpia, esMenorDeEdad }])
 
     setMensaje({ texto: 'Cuenta creada correctamente. Redirigiendo...', tipo: 'ok' })
     setTimeout(() => navigate('/login'), 1200)
@@ -42,6 +54,7 @@ function Registro() {
       </header>
       <main>
         <section className="datos_sesion_nombre" id="form-registro">
+          
           <label htmlFor="reg-nombre">Nombre</label>
           <input
             type="text"
@@ -49,21 +62,56 @@ function Registro() {
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
-          {/*Aquí nos falta colocar lo mismo con correo, contraseña, la confirmación y la fecha de Nacimiento.*/}
-          {/* Lo hago después, estoy cansado por esta noche. */}
+
+          <label htmlFor="reg-correo">Correo Electrónico (@gmail.com)</label>
+          <input
+            type="email"
+            id="reg-correo"
+            value={correo}
+            onChange={(e) => setCorreo(e.target.value)}
+          />
+
+          <label htmlFor="reg-contraseña">Contraseña</label>
           <input
             type={mostrar ? 'text' : 'password'}
             id="reg-contraseña"
             value={contraseña}
             onChange={(e) => setContraseña(e.target.value)}
           />
+
+          <label htmlFor="reg-confirmar">Confirmar Contraseña</label>
           <input
-            type="checkbox"
-            checked={mostrar}
-            onChange={(e) => setMostrar(e.target.checked)}
+            type={mostrar ? 'text' : 'password'}
+            id="reg-confirmar"
+            value={confirmar}
+            onChange={(e) => setConfirmar(e.target.value)}
           />
-          <button onClick={registrar}>Crear cuenta</button>
-          <p className={mensaje.tipo === 'ok' ? 'mensaje-ok' : 'mensaje-error'}>{mensaje.texto}</p>
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
+            <input
+              type="checkbox"
+              checked={mostrar}
+              onChange={(e) => setMostrar(e.target.checked)}
+            />
+            Mostrar contraseñas
+          </label>
+
+          <label htmlFor="reg-fecha" style={{ marginTop: '1rem' }}>Fecha de Nacimiento</label>
+          <input
+            type="date"
+            id="reg-fecha"
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+
+          <button onClick={registrar} style={{ marginTop: '1.5rem' }}>Crear cuenta</button>
+          
+          {mensaje.texto && (
+            <p className={mensaje.tipo === 'ok' ? 'mensaje-ok' : 'mensaje-error'}>
+              {mensaje.texto}
+            </p>
+          )}
+          
         </section>
       </main>
     </div>

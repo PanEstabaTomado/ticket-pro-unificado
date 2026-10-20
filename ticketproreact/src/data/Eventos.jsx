@@ -1,6 +1,6 @@
 export const eventos = [
   {
-    imagen: 'public/img/RockLegends.png',
+    imagen: '/img/RockLegends.png',
     id: 'evento-1',
     titulo: 'Rock Legends Festival',
     tipo: 'Concierto de Rock',
