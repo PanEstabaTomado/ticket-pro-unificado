@@ -29,15 +29,15 @@ function Inicio() {
       </section>
 
       {/* Grilla de Eventos */}
+      
       <section className="seccion-evento">
-        <section className="seccion-evento">
-          <h2>Próximos Eventos</h2>
+        <h2>Próximos Eventos</h2>
           <div className="grilla-eventos">
-              {eventos.map((evento) => (
+            {eventos.map((evento) => (
             <TarjetaEvento key={evento.id} evento={evento} />))}
           </div>
-        </section>
       </section>
+
     </main>
   )
 }

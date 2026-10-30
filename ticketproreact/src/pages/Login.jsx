@@ -6,6 +6,7 @@ function Login() {
   const navigate = useNavigate()
 
   // Estados: uno por cada dato que cambia en pantalla
+  const [correo, setCorreo] = useState('')
   const [nombre, setNombre] = useState('')
   const [contraseña, setContraseña] = useState('')
   const [mostrar, setMostrar] = useState(false)
@@ -17,9 +18,9 @@ function Login() {
   useEffect(() => {
     obtenerUsuarios()   // Garantizara que MAGAQ exista para probar cualquier cosa.
 
-    const nombreGuardado = localStorage.getItem('sesion_nombre_recordado')
-    if (nombreGuardado) {
-      setNombre(nombreGuardado)
+    const correoGuardado = localStorage.getItem('sesion_correo_recordado')
+    if (correoGuardado) {
+      setCorreo(correoGuardado)
       setRecordarme(true)
     }
 
@@ -36,7 +37,7 @@ function Login() {
   }, [])
 
   const ingresar = () => {
-    const nombreLimpio = nombre.trim()
+    const nombreLimpio = correo.trim()
 
     if (!nombreLimpio || !contraseña) {
       setMensaje({ texto: 'Por favor complete ambos campos.', tipo: 'error' })
@@ -107,15 +108,15 @@ function Login() {
           </section>
         ) : (
           <section className="datos_sesion_nombre" id="form-login">
-            <h2>Ingrese nombre</h2>
-            <label htmlFor="nombre">Nombre</label>
+            <h2>Ingrese correo electrónico</h2>
+            <label htmlFor="correo">Correo electrónico</label>
             <input
               type="text"
-              id="nombre"
-              placeholder="Escriba su nombre de usuario."
-              autoComplete="username"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              id="correo"
+              placeholder="Correo electrónico."
+              autoComplete="email"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
             />
 
             <h2>Ingrese su contraseña</h2>

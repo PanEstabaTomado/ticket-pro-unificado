@@ -23,11 +23,11 @@ export function guardarUsuarios(lista) {
   localStorage.setItem('usuarios', JSON.stringify(lista))
 }
 
-export function validarCredenciales(nombre, contraseña) {
+export function validarCredenciales(correo, contraseña) {
   const usuarios = obtenerUsuarios()
   return usuarios.find(
     (usuario) =>
-      usuario.nombre.toLowerCase() === nombre.toLowerCase() &&
+      usuario.correo.toLowerCase() === correo.toLowerCase() &&
       usuario.contraseña === contraseña
   )
 }

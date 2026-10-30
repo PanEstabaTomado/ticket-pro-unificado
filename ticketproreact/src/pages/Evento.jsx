@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { eventos } from '../data/Eventos'
 import { useCarrito } from '../context/CarritoContext'
 
 function Evento() {
   // 1. Todos los hooks van primero, siempre
   const { id } = useParams()
-  const navigate = useNavigate()
   const { agregar } = useCarrito()
   const [cantidad, setCantidad] = useState(0)
-
+  const [seccionId, setSeccionId] = useState(null)
   // 2. Buscar el evento cuyo id coincida con el de la dirección
   const evento = eventos.find((e) => e.id === id)
 
@@ -19,7 +18,7 @@ function Evento() {
   }
 
   // 4. Valores calculados (no necesitan su propio estado)
-  const seccion = evento.secciones[0]
+  const seccion = evento.secciones.find((s) => s.id === seccionId) ?? evento.secciones[0]
   const total = cantidad * seccion.precioSeccion
 
   // 5. Funciones de los botones
@@ -47,7 +46,7 @@ function Evento() {
     })
 
     alert('Se agregaron exitosamente las entradas al carrito.')
-    navigate('/carrito')
+    
   }
 
   // 6. Lo que se muestra en pantalla
@@ -85,7 +84,11 @@ function Evento() {
           <label>Selecciona tu ubicación:</label>
           <ul className="lista-secciones">
             {evento.secciones.map((s) => (
-              <li key={s.id} className="seccion">
+              <li
+                key={s.id}
+                className={s.id === seccion.id ? 'seccion seleccionada' : 'seccion'}
+                onClick={() => setSeccionId(s.id)}
+              >
                 <h3>{s.nombre}</h3>
                 <p>Precio: ${s.precioSeccion.toLocaleString('es-CL')}</p>
                 <p>Capacidad: {s.capacidad}</p>
