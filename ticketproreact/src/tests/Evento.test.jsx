@@ -48,6 +48,8 @@ describe('Componente Evento', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    localStorage.clear();
+    sessionStorage.clear();
     window.alert = vi.fn(); // Evita que los alert bloqueen los tests
     useNavigate.mockReturnValue(mockNavigate);
     useCarrito.mockReturnValue({ agregar: mockAgregar });
@@ -68,5 +70,39 @@ describe('Componente Evento', () => {
 
     expect(screen.getByText('Festival de Prueba')).toBeInTheDocument();
     expect(screen.getByText('Parque O\'Higgins')).toBeInTheDocument();
+  });
+
+  test('sin sesión, al intentar comprar muestra la tarjeta de aviso y no agrega al carrito', () => {
+    useParams.mockReturnValue({ id: '1' });
+    render(<Evento />);
+
+    fireEvent.click(screen.getByText('+'));
+    fireEvent.click(screen.getByText('Añadir al Carrito'));
+
+    expect(screen.getByText('No puede comprar productos en TicketPro')).toBeInTheDocument();
+    expect(mockAgregar).not.toHaveBeenCalled();
+  });
+
+  test('con sesión y 0 entradas muestra error en pantalla (sin alert)', () => {
+    localStorage.setItem('sesion_activa', JSON.stringify({ nombre: 'Juan', correo: 'juan@gmail.com' }));
+    useParams.mockReturnValue({ id: '1' });
+    render(<Evento />);
+
+    fireEvent.click(screen.getByText('Añadir al Carrito'));
+
+    expect(screen.getByText('Debes seleccionar al menos 1 entrada.')).toBeInTheDocument();
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(mockAgregar).not.toHaveBeenCalled();
+  });
+
+  test('con sesión agrega las entradas al carrito', () => {
+    localStorage.setItem('sesion_activa', JSON.stringify({ nombre: 'Juan', correo: 'juan@gmail.com' }));
+    useParams.mockReturnValue({ id: '1' });
+    render(<Evento />);
+
+    fireEvent.click(screen.getByText('+'));
+    fireEvent.click(screen.getByText('Añadir al Carrito'));
+
+    expect(mockAgregar).toHaveBeenCalledTimes(1);
   });
 })

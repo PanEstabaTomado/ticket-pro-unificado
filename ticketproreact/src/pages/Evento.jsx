@@ -2,11 +2,18 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { eventos } from '../data/Eventos'
 import { useCarrito } from '../context/CarritoContext'
+import ResenasEvento from '../components/ResenasEvento'
+import { eventoFinalizado } from '../utils/Fechas'
+import { useSesion } from '../utils/Sesion'
+import AvisoSesion from '../components/AvisoSesion'
 
 function Evento() {
   // 1. Todos los hooks van primero, siempre
   const { id } = useParams()
   const { agregar } = useCarrito()
+  const sesion = useSesion()
+  const [mostrarAviso, setMostrarAviso] = useState(false)
+  const [mensaje, setMensaje] = useState({ texto: '', tipo: '' })
   const [cantidad, setCantidad] = useState(0)
   const [seccionId, setSeccionId] = useState(null)
   // 2. Buscar el evento cuyo id coincida con el de la dirección
@@ -20,9 +27,13 @@ function Evento() {
   // 4. Valores calculados (no necesitan su propio estado)
   const seccion = evento.secciones.find((s) => s.id === seccionId) ?? evento.secciones[0]
   const total = cantidad * seccion.precioSeccion
+  const finalizado = eventoFinalizado(evento)
 
   // 5. Funciones de los botones
-  const sumar = () => setCantidad(cantidad + 1)
+  const sumar = () => {
+    setCantidad(cantidad + 1)
+    setMensaje({ texto: '', tipo: '' })
+  }
 
   const restar = () => {
     if (cantidad > 0) {
@@ -31,8 +42,14 @@ function Evento() {
   }
 
   const comprar = () => {
+    // Sin sesión no se puede comprar: se muestra la tarjeta de aviso.
+    if (!sesion) {
+      setMostrarAviso(true)
+      return
+    }
+
     if (cantidad === 0) {
-      alert('Debes seleccionar al menos 1 entrada.')
+      setMensaje({ texto: 'Debes seleccionar al menos 1 entrada.', tipo: 'error' })
       return
     }
 
@@ -46,7 +63,6 @@ function Evento() {
     })
 
     alert('Se agregaron exitosamente las entradas al carrito.')
-    
   }
 
   // 6. Lo que se muestra en pantalla
@@ -105,9 +121,16 @@ function Evento() {
           <div>
             <p>Total: <strong>$ {total.toLocaleString('es-CL')}</strong></p>
             <button className="btn-primario" onClick={comprar}>Añadir al Carrito</button>
+            {mensaje.texto && (
+              <p role="alert" className={mensaje.tipo === 'ok' ? 'mensaje-ok' : 'mensaje-error'}>{mensaje.texto}</p>
+            )}
           </div>
         </div>
       </section>
+
+      <ResenasEvento evento={evento} finalizado={finalizado} />
+
+      {mostrarAviso && <AvisoSesion onCerrar={() => setMostrarAviso(false)} />}
     </main>
   )
 }

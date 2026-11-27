@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { obtenerUsuarios, validarCredenciales } from '../utils/Usuarios'
+import { notificarCambioSesion } from '../utils/Sesion'
 
 function Login() {
   const navigate = useNavigate()
@@ -52,7 +53,7 @@ function Login() {
     }
 
     if (usuario.esMenorDeEdad) {
-      alert('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+      setMensaje({ texto: 'Usuarios menores de edad no pueden usar los servicios de esta página.', tipo: 'error' })
       return
     }
 
@@ -65,12 +66,12 @@ function Login() {
     // sin él, solo dura mientras la pestaña esté abierta (sessionStorage).
     if (recordarme) {
       localStorage.setItem('sesion_activa', datosTexto)
-      localStorage.setItem('sesion_nombre_recordado', nombreLimpio)
+      localStorage.setItem('sesion_correo_recordado', usuario.correo)
       sessionStorage.removeItem('sesion_activa')
     } else {
       sessionStorage.setItem('sesion_activa', datosTexto)
       localStorage.removeItem('sesion_activa')
-      localStorage.removeItem('sesion_nombre_recordado')
+      localStorage.removeItem('sesion_correo_recordado')
     }
 
     setTimeout(() => setSesion(datosSesion), 600)
@@ -79,6 +80,7 @@ function Login() {
   const cerrarSesion = () => {
     localStorage.removeItem('sesion_activa')
     sessionStorage.removeItem('sesion_activa')
+    notificarCambioSesion()
     setSesion(null)
     setContraseña('')
     setMensaje({ texto: '', tipo: '' })

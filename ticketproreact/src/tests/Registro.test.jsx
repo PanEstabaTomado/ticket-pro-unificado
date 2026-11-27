@@ -49,14 +49,14 @@ describe('Componente Registro', () => {
     expect(screen.getByText('El nombre no puede estar vacío.')).toBeInTheDocument()
   })
 
-  it('muestra error si la contraseña no tiene 8 caracteres', () => {
+  it('muestra error si la contraseña tiene menos de 8 caracteres', () => {
     renderConRouter()
     
     fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'Juan' } })
     fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: '123' } })
     fireEvent.click(screen.getByText('Crear cuenta'))
     
-    expect(screen.getByText('La contraseña debe tener exactamente 8 caracteres.')).toBeInTheDocument()
+    expect(screen.getByText('La contraseña debe tener 8 caracteres o más.')).toBeInTheDocument()
   })
 
   it('muestra error si las contraseñas no coinciden', () => {
@@ -70,7 +70,7 @@ describe('Componente Registro', () => {
     expect(screen.getByText('Las contraseñas no coinciden.')).toBeInTheDocument()
   })
 
-  it('muestra alerta si el correo no es @gmail.com', () => {
+  it('muestra error en pantalla si el correo no es @gmail.com', () => {
     renderConRouter()
     
     fireEvent.change(screen.getByLabelText('Nombre'), { target: { value: 'Juan' } })
@@ -79,7 +79,8 @@ describe('Componente Registro', () => {
     fireEvent.change(screen.getByLabelText(/Correo Electrónico/i), { target: { value: 'juan@hotmail.com' } })
     fireEvent.click(screen.getByText('Crear cuenta'))
     
-    expect(window.alert).toHaveBeenCalledWith('Correo electrónico invalido')
+    expect(screen.getByText('Correo electrónico inválido. Debe terminar en @gmail.com.')).toBeInTheDocument()
+    expect(window.alert).not.toHaveBeenCalled()
   })
 
   it('muestra error si la fecha está vacía', () => {
@@ -111,7 +112,7 @@ describe('Componente Registro', () => {
     expect(screen.getByText('Ese nombre de usuario ya está en uso.')).toBeInTheDocument()
   })
 
-  it('bloquea el registro con alerta si es menor de edad', () => {
+  it('bloquea el registro con error en pantalla si es menor de edad', () => {
     capitalizarNombre.mockReturnValue('Pedro')
     calcularEdad.mockReturnValue(15) // Simulamos que tiene 15 años
     renderConRouter()
@@ -124,7 +125,8 @@ describe('Componente Registro', () => {
     
     fireEvent.click(screen.getByText('Crear cuenta'))
     
-    expect(window.alert).toHaveBeenCalledWith('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+    expect(screen.getByText('Usuarios menores de edad no pueden usar los servicios de esta página.')).toBeInTheDocument()
+    expect(window.alert).not.toHaveBeenCalled()
     expect(guardarUsuarios).not.toHaveBeenCalled()
   })
 

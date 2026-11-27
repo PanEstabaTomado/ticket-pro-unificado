@@ -13,7 +13,7 @@ afterEach(() => {
 const evento = {
   id: 'evento-1',
   titulo: 'Rock Legends Festival',
-  fecha: '25 Octubre de 2026',
+  fecha: '25 Octubre de 2099', // futuro fijo: el botón de compra solo aparece en eventos que no han terminado
   lugar: 'Estadio Nacional',
   precio: 50000,
   imagen: '/public/img/RockLegends.jpg',
@@ -34,7 +34,7 @@ describe('TarjetaEvento', () => {
   it('Muestra los datos basicos del evento', () => {
     renderTarjeta()
     expect(screen.getByText('Rock Legends Festival')).toBeInTheDocument()
-    expect(screen.getByText('25 Octubre de 2026 | Estadio Nacional')).toBeInTheDocument()
+    expect(screen.getByText('25 Octubre de 2099 | Estadio Nacional')).toBeInTheDocument()
   })
 
   it('Se muestra el precio del evento con el formato de pesos', () => {
@@ -63,5 +63,15 @@ describe('TarjetaEvento', () => {
     expect(corazon).toHaveTextContent('♥')
     await user.click(corazon)
     expect(corazon).toHaveTextContent('♡')
+  })
+
+  it('Un evento finalizado muestra la etiqueta y lleva a las reseñas', () => {
+    render(
+      <MemoryRouter>
+        <TarjetaEvento evento={{ ...evento, fecha: '25 Octubre de 2020' }} />
+      </MemoryRouter>
+    )
+    expect(screen.getByText('Finalizado')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Ver reseñas' })).toBeInTheDocument()
   })
 })

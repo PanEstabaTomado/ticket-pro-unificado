@@ -5,6 +5,9 @@ import { CarritoProvider } from './context/CarritoContext'
 import App from './App'
 import './styles/styles.css'
 import './styles/stylus.css'
+import { aplicarTemaInicial } from './utils/Tema'
+
+aplicarTemaInicial()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

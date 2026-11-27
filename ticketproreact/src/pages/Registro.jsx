@@ -18,13 +18,13 @@ function Registro() {
 
     if (nombre.trim() === '') return setMensaje({ texto: 'El nombre no puede estar vacío.', tipo: 'error' })
     
-    // Nuevo mensaje de error por longitud de contraseña
-    if (passLimpia === '' || passLimpia.length !== 8)
-      return setMensaje({ texto: 'La contraseña debe tener exactamente 8 caracteres.', tipo: 'error' })
+    // Mínimo 8 caracteres (8 o más)
+    if (passLimpia === '' || passLimpia.length < 8)
+      return setMensaje({ texto: 'La contraseña debe tener 8 caracteres o más.', tipo: 'error' })
     
     if (passLimpia !== confirmar.trim()) return setMensaje({ texto: 'Las contraseñas no coinciden.', tipo: 'error' })
     
-    if (!correo.trim().toLowerCase().endsWith('@gmail.com')) return alert('Correo electrónico invalido')
+    if (!correo.trim().toLowerCase().endsWith('@gmail.com')) return setMensaje({ texto: 'Correo electrónico inválido. Debe terminar en @gmail.com.', tipo: 'error' })
     
     if (fecha === '') return setMensaje({ texto: 'Debe ingresar una fecha de nacimiento.', tipo: 'error' })
 
@@ -38,7 +38,7 @@ function Registro() {
     
     // COMPROBACIÓN ANTES DE GUARDAR
     if (esMenorDeEdad) {
-      return alert('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+      return setMensaje({ texto: 'Usuarios menores de edad no pueden usar los servicios de esta página.', tipo: 'error' })
     }
 
     guardarUsuarios([...usuarios, { nombre: nombreFinal, correo: correo.trim(), contraseña: passLimpia, esMenorDeEdad }])

@@ -82,7 +82,7 @@ describe('Componente Login', () => {
     expect(screen.getByText('Usuario o contraseña incorrectos.')).toBeInTheDocument()
   })
 
-  it('alerta si el usuario es menor de edad', () => {
+  it('muestra error en pantalla si el usuario es menor de edad', () => {
     validarCredenciales.mockReturnValue({ correo: 'menor@gmail.com', esMenorDeEdad: true })
     renderConRouter()
 
@@ -90,7 +90,8 @@ describe('Componente Login', () => {
     fireEvent.change(screen.getByPlaceholderText('Escriba su contraseña.'), { target: { value: '12345678' } })
     fireEvent.click(screen.getByText('Ingresar Datos'))
 
-    expect(window.alert).toHaveBeenCalledWith('Usuarios Menores de edad no pueden usar los servicios de esta página.')
+    expect(screen.getByText('Usuarios menores de edad no pueden usar los servicios de esta página.')).toBeInTheDocument()
+    expect(window.alert).not.toHaveBeenCalled()
   })
 
   it('inicio de sesión exitoso sin "recordarme" (usa sessionStorage)', () => {
@@ -116,6 +117,18 @@ describe('Componente Login', () => {
     // Verificamos que aparece el panel de bienvenida
     expect(screen.getByText('¡Bienvenido/a!')).toBeInTheDocument()
     expect(screen.getByText('juan@gmail.com')).toBeInTheDocument()
+  })
+
+  it('con "recordarme" guarda el correo del usuario', () => {
+    validarCredenciales.mockReturnValue({ nombre: 'Juan', correo: 'juan@gmail.com', esMenorDeEdad: false })
+    renderConRouter()
+
+    fireEvent.change(screen.getByPlaceholderText('Correo electrónico.'), { target: { value: 'juan@gmail.com' } })
+    fireEvent.change(screen.getByPlaceholderText('Escriba su contraseña.'), { target: { value: '12345678' } })
+    fireEvent.click(screen.getByLabelText('Recordar inicio de sesión'))
+    fireEvent.click(screen.getByText('Ingresar Datos'))
+
+    expect(window.localStorage.setItem).toHaveBeenCalledWith('sesion_correo_recordado', 'juan@gmail.com')
   })
 
   it('permite mostrar y ocultar la contraseña', () => {

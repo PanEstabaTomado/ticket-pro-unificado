@@ -1,17 +1,68 @@
+/* Paleta: negro cálido + dorado (noche ochentera). El tema claro se activa con data-tema="claro" en <html>. */
 :root {
-    --bg: #0b0b0e;
-    --bg-card: #15151a;
-    --bg-card-2: #1c1c23;
-    --border: #2c2c35;
+    color-scheme: dark;
 
-    --yellow: #facc15;
-    --yellow-light: #fde047;
-    --yellow-dark: #ca8a04;
-    --yellow-glow: rgba(250, 204, 21, 0.3);
+    --bg: #0b0a08;
+    --bg-card: #15130f;
+    --bg-card-2: #1e1b15;
+    --bg-input: #0b0a08;
+    --border: #342d1f;
+    --borde-input: #4a4231;
 
-    --text: #f4f4f5;
-    --text-muted: #a1a1aa;
-    --on-yellow: #1a1400;
+    --oro: #d4a83a;            /* rellenos y bordes */
+    --oro-claro: #f0cf7a;
+    --oro-oscuro: #9c7620;
+    --oro-rgb: 212, 168, 58;
+    --oro-brillo: rgba(var(--oro-rgb), 0.3);
+    --oro-texto: #e2b94d;      /* dorado cuando se usa como color de texto */
+    --oro-titulo: #f3d487;
+
+    --texto: #f3eee2;
+    --texto-suave: #a89f8b;
+    --sobre-oro: #1a1204;      /* texto sobre fondos dorados */
+
+    --header-bg: rgba(11, 10, 8, 0.95);
+    --franja: #100e0a;
+    --footer-bg: #070605;
+    --hero-fondo: linear-gradient(135deg, #15130f 0%, #241c08 100%);
+
+    --peligro: #f87171;
+    --peligro-borde: #7f1d1d;
+    --peligro-hover: #7f1d1d;
+    --ok: #4ade80;
+}
+
+:root[data-tema='claro'] {
+    color-scheme: light;
+
+    --bg: #f7f2e7;
+    --bg-card: #fffdf8;
+    --bg-card-2: #f2ebda;
+    --bg-input: #ffffff;
+    --border: #dccfae;
+    --borde-input: #c9b98f;
+
+    --oro: #c89a2b;
+    --oro-claro: #e2bb55;
+    --oro-oscuro: #a47a14;
+    --oro-rgb: 184, 134, 27;
+    --oro-brillo: rgba(var(--oro-rgb), 0.25);
+    --oro-texto: #7a5800;
+    --oro-titulo: #5f4300;
+
+    --texto: #1f1a10;
+    --texto-suave: #5f563f;
+    --sobre-oro: #1a1204;
+
+    --header-bg: rgba(247, 242, 231, 0.95);
+    --franja: #efe7d3;
+    --footer-bg: #e9dfc5;
+    --hero-fondo: linear-gradient(135deg, #fffdf8 0%, #f3e7c4 100%);
+
+    --peligro: #b42318;
+    --peligro-borde: #e7b1aa;
+    --peligro-hover: #b42318;
+    --ok: #1a7f37;
 }
 
 * {
@@ -24,26 +75,26 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background-color: var(--bg);
     background-image:
-        radial-gradient(circle at 10% 0%, rgba(250, 204, 21, 0.10), transparent 40%),
-        radial-gradient(circle at 95% 40%, rgba(202, 138, 4, 0.08), transparent 40%);
+        radial-gradient(circle at 10% 0%, rgba(var(--oro-rgb), 0.10), transparent 40%),
+        radial-gradient(circle at 95% 40%, rgba(var(--oro-rgb), 0.08), transparent 40%);
     background-attachment: fixed;
-    color: var(--text);
+    color: var(--texto);
     min-height: 100vh;
 }
 
 h2 {
-    color: var(--yellow);
+    color: var(--oro-texto);
     margin-bottom: 1rem;
 }
 
 label {
-    color: var(--text-muted);
+    color: var(--texto-suave);
 }
 
 /* --- Navegación --- */
 header {
-    background: rgba(11, 11, 14, 0.95);
-    border-bottom: 1px solid var(--yellow-dark);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--oro-oscuro);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -52,68 +103,81 @@ header {
 
 .navbar {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    padding: 1rem;
+    justify-content: space-between;
+    gap: 0.6rem 1rem;
+    padding: 0.7rem 1.2rem;
+}
+
+.navbar-izquierda {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 1.5rem;
+}
+
+.navbar-derecha {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-left: auto;
 }
 
 .logo {
     font-size: 1.6rem;
     font-weight: bold;
-    color: var(--yellow);
-    text-shadow: 0 0 14px var(--yellow-glow);
+    color: var(--oro-texto);
+    text-shadow: 0 0 14px var(--oro-brillo);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 1.2rem;
-    margin: 1rem 0;
+    margin: 0;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-muted);
+    color: var(--texto-suave);
     transition: color 0.2s;
 }
 
 .nav-links a:hover {
-    color: var(--yellow-light);
+    color: var(--oro-titulo);
 }
 
 .carrito {
+    font: inherit;
     font-weight: bold;
+    background: transparent;
     cursor: pointer;
-    color: var(--yellow);
-    border: 1px solid var(--yellow-dark);
+    color: var(--oro-texto);
+    border: 1px solid var(--oro-oscuro);
     border-radius: 20px;
     padding: 0.4rem 0.9rem;
     transition: box-shadow 0.2s, background 0.2s;
 }
 
 .carrito:hover {
-    background: rgba(250, 204, 21, 0.1);
-    box-shadow: 0 0 12px var(--yellow-glow);
+    background: rgba(var(--oro-rgb), 0.1);
+    box-shadow: 0 0 12px var(--oro-brillo);
 }
 
 .auth-links {
-    text-align: right;
-    padding: 0.5rem 1rem;
-    background: #101014;
-    border-top: 1px solid var(--border);
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--texto-suave);
 }
 
 .auth-links a {
     text-decoration: none;
-    color: var(--yellow);
+    color: var(--oro-texto);
 }
 
 .auth-links a:hover {
-    color: var(--yellow-light);
+    color: var(--oro-titulo);
     text-decoration: underline;
 }
 
@@ -123,9 +187,9 @@ header {
     flex-direction: column;
     padding: 2rem 1.5rem;
     margin: 1rem;
-    background: linear-gradient(135deg, #15151a 0%, #1f1a08 100%);
+    background: var(--hero-fondo);
     border: 1px solid var(--border);
-    border-top: 2px solid var(--yellow);
+    border-top: 2px solid var(--oro);
     border-radius: 14px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
@@ -133,19 +197,19 @@ header {
 .hero-content h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: var(--yellow-light);
-    text-shadow: 0 0 18px var(--yellow-glow);
+    color: var(--oro-titulo);
+    text-shadow: 0 0 18px var(--oro-brillo);
 }
 
 .hero-content p {
-    color: var(--text-muted);
+    color: var(--texto-suave);
     line-height: 1.5;
 }
 
 /* --- Botones --- */
 .btn-primario {
-    background: linear-gradient(135deg, var(--yellow-dark), var(--yellow), var(--yellow-light));
-    color: var(--on-yellow);
+    background: linear-gradient(135deg, var(--oro-oscuro), var(--oro), var(--oro-claro));
+    color: var(--sobre-oro);
     padding: 0.7rem 1.4rem;
     border: none;
     border-radius: 8px;
@@ -157,7 +221,7 @@ header {
 
 .btn-primario:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px var(--yellow-glow);
+    box-shadow: 0 0 20px var(--oro-brillo);
 }
 
 /* --- Imágenes --- */
@@ -167,9 +231,9 @@ header {
     align-items: center;
     justify-content: center;
     min-height: 200px;
-    border: 2px dashed var(--yellow-dark);
+    border: 2px dashed var(--oro-oscuro);
     border-radius: 10px;
-    color: var(--text-muted);
+    color: var(--texto-suave);
     overflow: hidden;
 }
 
@@ -244,8 +308,8 @@ header {
 
 .carta-evento:hover {
     transform: translateY(-4px);
-    border-color: var(--yellow);
-    box-shadow: 0 0 22px var(--yellow-glow);
+    border-color: var(--oro-texto);
+    box-shadow: 0 0 22px var(--oro-brillo);
 }
 
 .img-evento {
@@ -270,18 +334,18 @@ header {
 
 .evento-info h3 {
     margin: 0.8rem 0 0.4rem;
-    color: var(--text);
+    color: var(--texto);
 }
 
 .atributos {
-    color: var(--text-muted);
+    color: var(--texto-suave);
     font-size: 0.9rem;
 }
 
 .precio {
     font-weight: bold;
     font-size: 1.2rem;
-    color: var(--yellow);
+    color: var(--oro-texto);
     margin-top: 0.4rem;
 }
 
@@ -292,8 +356,8 @@ header {
 }
 
 .btn-agregar {
-    background: linear-gradient(135deg, var(--yellow-dark), var(--yellow));
-    color: var(--on-yellow);
+    background: linear-gradient(135deg, var(--oro-oscuro), var(--oro));
+    color: var(--sobre-oro);
     border: none;
     border-radius: 8px;
     padding: 0.6rem;
@@ -305,35 +369,35 @@ header {
 }
 
 .btn-agregar:hover {
-    box-shadow: 0 0 14px var(--yellow-glow);
+    box-shadow: 0 0 14px var(--oro-brillo);
 }
 
 .btn-fav {
     background: transparent;
-    border: 1px solid var(--yellow-dark);
+    border: 1px solid var(--oro-oscuro);
     border-radius: 8px;
     padding: 0.6rem 0.8rem;
     cursor: pointer;
-    color: var(--yellow);
+    color: var(--oro-texto);
     transition: background 0.2s;
 }
 
 .btn-fav:hover {
-    background: rgba(250, 204, 21, 0.12);
+    background: rgba(var(--oro-rgb), 0.12);
 }
 
 /* --- Página de evento --- */
 #evento-datos p {
     padding: 0.45rem 0;
     border-bottom: 1px solid var(--border);
-    color: var(--text-muted);
+    color: var(--texto-suave);
 }
 
 #evento-datos .titulo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--yellow-light);
-    border-bottom: 2px solid var(--yellow);
+    color: var(--oro-titulo);
+    border-bottom: 2px solid var(--oro);
 }
 
 .opciones-compra p {
@@ -358,16 +422,16 @@ header {
 }
 
 .seccion:hover {
-    border-color: var(--yellow-dark);
+    border-color: var(--oro-oscuro);
 }
 
 .seccion.seleccionada {
-    border-color: var(--yellow);
-    box-shadow: 0 0 14px var(--yellow-glow);
+    border-color: var(--oro-texto);
+    box-shadow: 0 0 14px var(--oro-brillo);
 }
 
 .seccion p {
-    color: var(--text-muted);
+    color: var(--texto-suave);
     font-size: 0.9rem;
 }
 
@@ -383,18 +447,18 @@ header {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    border: 1px solid var(--yellow);
+    border: 1px solid var(--oro);
     background: transparent;
-    color: var(--yellow);
+    color: var(--oro-texto);
     font-size: 1.2rem;
     cursor: pointer;
     transition: background 0.2s, box-shadow 0.2s;
 }
 
 .selector-cantidad button:hover {
-    background: var(--yellow);
-    color: var(--on-yellow);
-    box-shadow: 0 0 12px var(--yellow-glow);
+    background: var(--oro);
+    color: var(--sobre-oro);
+    box-shadow: 0 0 12px var(--oro-brillo);
 }
 
 /* --- Carrito --- */
@@ -411,15 +475,15 @@ header {
 }
 
 .item-carrito p {
-    color: var(--text-muted);
+    color: var(--texto-suave);
     margin-top: 0.25rem;
 }
 
 .btn-eliminar {
     margin-top: 0.5rem;
     background: transparent;
-    color: #f87171;
-    border: 1px solid #7f1d1d;
+    color: var(--peligro);
+    border: 1px solid var(--peligro-borde);
     border-radius: 8px;
     padding: 0.4rem 0.8rem;
     cursor: pointer;
@@ -427,36 +491,36 @@ header {
 }
 
 .btn-eliminar:hover {
-    background: #7f1d1d;
-    color: white;
+    background: var(--peligro-hover);
+    color: #fff;
 }
 
 .resumen-compra {
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 2px solid var(--yellow);
+    border-top: 2px solid var(--oro);
     text-align: right;
     font-size: 1.2rem;
 }
 
 .resumen-compra strong {
-    color: var(--yellow-light);
+    color: var(--oro-titulo);
 }
 
 /* --- Footer --- */
 footer {
-    background: #070709;
+    background: var(--footer-bg);
     padding: 2rem 1rem;
-    border-top: 1px solid var(--yellow-dark);
+    border-top: 1px solid var(--oro-oscuro);
     text-align: center;
-    color: var(--text-muted);
+    color: var(--texto-suave);
     margin-top: 2rem;
 }
 
 .footer-logo {
     font-size: 1.3rem;
     font-weight: bold;
-    color: var(--yellow);
+    color: var(--oro-texto);
     margin-bottom: 0.8rem;
 }
 
@@ -474,18 +538,18 @@ footer {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px 0 0 8px;
-    color: var(--text);
+    color: var(--texto);
 }
 
 .contacto-form input:focus {
     outline: none;
-    border-color: var(--yellow);
+    border-color: var(--oro-texto);
 }
 
 .contacto-form button {
     padding: 0.6rem 1rem;
-    background: linear-gradient(135deg, var(--yellow-dark), var(--yellow));
-    color: var(--on-yellow);
+    background: linear-gradient(135deg, var(--oro-oscuro), var(--oro));
+    color: var(--sobre-oro);
     font-weight: bold;
     border: none;
     border-radius: 0 8px 8px 0;
@@ -494,15 +558,6 @@ footer {
 
 
 @media (min-width: 768px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .nav-links {
-        margin: 0;
-    }
-
     .hero {
         flex-direction: row;
         align-items: center;
@@ -516,5 +571,667 @@ footer {
     .imagen-portada {
         flex: 1;
         margin-top: 0;
+    }
+}
+
+/* =====================================================================
+   Accesibilidad básica
+   ===================================================================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--oro-texto);
+    outline-offset: 2px;
+}
+
+.vacio {
+    color: var(--texto-suave);
+    margin: 0.5rem 0 1rem;
+}
+
+.ayuda {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.btn-enlace {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--oro-texto);
+    border: 1px solid var(--oro-oscuro);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-secundario:hover {
+    background: rgba(var(--oro-rgb), 0.12);
+}
+
+/* =====================================================================
+   Header: carrito, modo claro y usuario (arriba a la derecha)
+   ===================================================================== */
+.boton-tema {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--oro-oscuro);
+    background: transparent;
+    color: var(--oro-texto);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.boton-tema:hover {
+    background: rgba(var(--oro-rgb), 0.12);
+    box-shadow: 0 0 12px var(--oro-brillo);
+}
+
+.menu-usuario {
+    position: relative;
+}
+
+.chip-usuario {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.8rem 0.2rem 0.25rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--texto);
+    background: rgba(var(--oro-rgb), 0.1);
+    border: 1.5px solid var(--oro);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--oro-brillo);
+    transition: background 0.2s;
+}
+
+.chip-usuario:hover {
+    background: rgba(var(--oro-rgb), 0.2);
+}
+
+.chip-nombre {
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chip-flecha {
+    font-size: 0.7rem;
+    color: var(--oro-texto);
+}
+
+.menu-desplegable {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--oro-oscuro);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    z-index: 20;
+}
+
+.menu-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    min-width: 0;
+}
+
+.menu-cabecera div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.menu-cabecera strong {
+    color: var(--oro-titulo);
+}
+
+.menu-cabecera small {
+    color: var(--texto-suave);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-desplegable a,
+.menu-desplegable > button {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    text-decoration: none;
+    font: inherit;
+    color: var(--texto);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-desplegable a:hover,
+.menu-desplegable > button:hover {
+    background: rgba(var(--oro-rgb), 0.12);
+    color: var(--oro-titulo);
+}
+
+.menu-desplegable > button {
+    border-top: 1px solid var(--border);
+    color: var(--peligro);
+}
+
+/* Avatar (foto o inicial) */
+.avatar {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    font-weight: bold;
+    color: var(--sobre-oro);
+    background: linear-gradient(135deg, var(--oro-oscuro), var(--oro-claro));
+    border: 1px solid var(--oro);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-sm { width: 30px; height: 30px; font-size: 0.9rem; }
+.avatar-md { width: 40px; height: 40px; font-size: 1.1rem; }
+.avatar-lg { width: 48px; height: 48px; font-size: 1.3rem; }
+.avatar-xl { width: 96px; height: 96px; font-size: 2.4rem; }
+
+@media (max-width: 520px) {
+    .chip-nombre { max-width: 80px; }
+    .auth-links { font-size: 0.8rem; }
+}
+
+/* =====================================================================
+   Portada del inicio: fondo difuminado que rota entre eventos
+   ===================================================================== */
+.portada {
+    /* La portada siempre es oscura (hay una foto debajo), también en modo claro. */
+    --texto: #f3eee2;
+    --texto-suave: #d9d0bb;
+    --oro-titulo: #f3d487;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 1rem;
+    min-height: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--oro);
+    border-radius: 14px;
+    color: var(--texto);
+}
+
+.portada-fondos {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #0b0a08;
+}
+
+.portada-fondo {
+    position: absolute;
+    inset: -40px; /* sobra para que el desenfoque no deje bordes claros */
+    background-size: cover;
+    background-position: center;
+    filter: blur(22px) saturate(1.1);
+    opacity: 0;
+    transition: opacity 1.4s ease;
+}
+
+.portada-fondo.visible {
+    opacity: 1;
+}
+
+/* Si el evento no tiene imagen (o el archivo no existe) se usa un degradado dorado/negro */
+.portada-fondo.respaldo-0 { background: radial-gradient(circle at 20% 30%, #8a6516 0, transparent 55%), radial-gradient(circle at 85% 75%, #3a2a08 0, transparent 50%), #120f08; }
+.portada-fondo.respaldo-1 { background: radial-gradient(circle at 80% 25%, #7a2c3d 0, transparent 50%), radial-gradient(circle at 15% 80%, #6e5214 0, transparent 55%), #0e0b08; }
+.portada-fondo.respaldo-2 { background: radial-gradient(circle at 50% 20%, #a07a1c 0, transparent 50%), radial-gradient(circle at 10% 90%, #2c1f3d 0, transparent 55%), #0d0b08; }
+.portada-fondo.respaldo-3 { background: radial-gradient(circle at 75% 80%, #8a5a14 0, transparent 55%), radial-gradient(circle at 20% 15%, #4a3a10 0, transparent 50%), #100c07; }
+
+.portada-velo {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(8, 7, 5, 0.85) 0%, rgba(8, 7, 5, 0.55) 55%, rgba(8, 7, 5, 0.72) 100%);
+}
+
+.portada-contenido {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2.2rem 1.5rem 3.4rem;
+}
+
+.portada .hero-content {
+    padding-right: 0;
+}
+
+.portada-ficha {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(12, 10, 7, 0.72);
+    border: 1px solid var(--oro-oscuro);
+    border-radius: 12px;
+    backdrop-filter: blur(6px);
+}
+
+.portada-ficha-imagen {
+    flex: 0 0 40%;
+}
+
+.portada-ficha-imagen img,
+.portada-ficha-imagen .imagen-respaldo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    min-height: 0;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.portada-ficha-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.portada-ficha-info h3 {
+    color: var(--oro-titulo);
+    margin-bottom: 0.4rem;
+}
+
+.portada-ficha-info p {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.portada-ficha-info .btn-primario {
+    align-self: flex-start;
+}
+
+.portada-puntos {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+}
+
+.punto {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--oro);
+    background: transparent;
+    cursor: pointer;
+}
+
+.punto.activo {
+    background: var(--oro);
+}
+
+@media (min-width: 768px) {
+    .portada-contenido {
+        grid-template-columns: 1.2fr 1fr;
+        padding: 3rem 2.5rem 3.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portada-fondo { transition: none; }
+}
+
+/* =====================================================================
+   Tarjetas de evento: imagen de respaldo, finalizado, nota de la empresa
+   ===================================================================== */
+.img-evento {
+    position: relative;
+}
+
+.imagen-respaldo {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: var(--oro-texto);
+    background: radial-gradient(circle at 30% 30%, rgba(var(--oro-rgb), 0.28), transparent 60%), var(--bg-card-2);
+}
+
+.img-evento .imagen-respaldo {
+    height: 200px;
+}
+
+.etiqueta-finalizado {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    width: auto !important;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--sobre-oro);
+    background: var(--oro);
+    border-radius: 999px;
+}
+
+.carta-evento.finalizado .img-evento img {
+    filter: grayscale(0.7);
+}
+
+.organizador-nota {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+/* =====================================================================
+   Estrellas y opiniones
+   ===================================================================== */
+.estrellas {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.estrellas-base {
+    color: var(--borde-input);
+}
+
+.estrellas-relleno {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    color: var(--oro);
+}
+
+.estrellas-input {
+    display: flex;
+    gap: 0.2rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.estrella-boton {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--borde-input);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.estrella-boton.activa {
+    color: var(--oro);
+}
+
+.estrella-boton:hover {
+    transform: scale(1.12);
+}
+
+.nota-empresa {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.2rem;
+    background: var(--bg-card-2);
+    border: 1px solid var(--oro-oscuro);
+    border-radius: 12px;
+}
+
+.nota-numero {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--oro-titulo);
+}
+
+.nota-titulo {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
+
+.nota-detalle {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    max-width: 60ch;
+}
+
+.aviso-opinion {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: var(--texto-suave);
+    background: var(--bg-card-2);
+    border: 1px dashed var(--oro-oscuro);
+    border-radius: 10px;
+}
+
+.aviso-opinion .btn-primario {
+    margin-top: 0.6rem;
+}
+
+.form-opinion,
+.form-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 560px;
+}
+
+.form-opinion h3,
+.subtitulo-lista {
+    color: var(--oro-titulo);
+    margin: 0.6rem 0 0.2rem;
+}
+
+.form-opinion textarea,
+.form-perfil input {
+    width: 100%;
+    padding: 0.7rem;
+    font: inherit;
+    color: var(--texto);
+    background: var(--bg-input);
+    border: 1px solid var(--borde-input);
+    border-radius: 8px;
+}
+
+.form-opinion textarea {
+    resize: vertical;
+}
+
+.form-perfil input[readonly] {
+    opacity: 0.7;
+}
+
+.form-opinion .btn-primario,
+.form-perfil .btn-primario {
+    align-self: flex-start;
+}
+
+.form-perfil label,
+.form-opinion label {
+    margin-top: 0.6rem;
+}
+
+.form-perfil small,
+.contador {
+    color: var(--texto-suave);
+    font-size: 0.8rem;
+}
+
+.contador {
+    text-align: right;
+}
+
+.lista-opiniones {
+    list-style: none;
+}
+
+.opinion {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.opinion-cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.opinion-cabecera time {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.opinion p {
+    color: var(--texto-suave);
+    overflow-wrap: anywhere;
+}
+
+/* =====================================================================
+   Perfil e historial
+   ===================================================================== */
+.perfil-foto {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-foto-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.perfil-foto-botones .btn-eliminar {
+    margin-top: 0;
+}
+
+.lista-historial {
+    list-style: none;
+}
+
+.item-historial {
+    display: grid;
+    grid-template-columns: 96px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.historial-imagen img,
+.historial-imagen .imagen-respaldo {
+    display: block;
+    width: 96px;
+    height: 72px;
+    min-height: 0;
+    padding: 0.3rem;
+    font-size: 0.7rem;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.historial-info h3 {
+    margin-bottom: 0.2rem;
+}
+
+.historial-estado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    text-align: right;
+}
+
+.insignia {
+    padding: 0.2rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-radius: 999px;
+}
+
+.insignia.asistido {
+    color: var(--sobre-oro);
+    background: var(--oro);
+}
+
+.insignia.proximo {
+    color: var(--oro-texto);
+    border: 1px solid var(--oro-oscuro);
+}
+
+.tu-nota {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+.enlace-evento {
+    color: var(--oro-texto);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.enlace-evento:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 620px) {
+    .item-historial {
+        grid-template-columns: 72px 1fr;
+    }
+    .historial-estado {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .historial-imagen img,
+    .historial-imagen .imagen-respaldo {
+        width: 72px;
+        height: 56px;
     }
 }

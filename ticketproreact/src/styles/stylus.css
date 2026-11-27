@@ -5,32 +5,32 @@
 .pagina-auth {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #0b0b0e;
-    background-image: radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.12), transparent 50%);
-    color: #f4f4f5;
+    background-color: var(--bg);
+    background-image: radial-gradient(circle at 50% 0%, rgba(var(--oro-rgb), 0.12), transparent 50%);
+    color: var(--texto);
     min-height: 100vh;
 }
 
 .pagina-auth header {
     position: static;
-    background: #101014;
-    color: #f4f4f5;
+    background: var(--franja);
+    color: var(--texto);
     text-align: center;
     padding: 30px 20px;
-    border-bottom: 1px solid #ca8a04;
+    border-bottom: 1px solid var(--oro-oscuro);
     backdrop-filter: none;
 }
 
 .pagina-auth header h1 {
     margin: 0 0 10px;
-    color: #facc15;
-    text-shadow: 0 0 16px rgba(250, 204, 21, 0.3);
+    color: var(--oro-texto);
+    text-shadow: 0 0 16px var(--oro-brillo);
     letter-spacing: 1px;
 }
 
 .pagina-auth header p {
     margin: 0;
-    color: #a1a1aa;
+    color: var(--texto-suave);
 }
 
 .pagina-auth main {
@@ -40,12 +40,12 @@
 }
 
 .datos_sesion_nombre {
-    background-color: #15151a;
-    border: 1px solid #2c2c35;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
     padding: 25px;
     margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.25);
 }
 
 .oculto {
@@ -55,14 +55,14 @@
 .pagina-auth h2 {
     margin-top: 5px;
     margin-bottom: 5px;
-    color: #fde047;
+    color: var(--oro-titulo);
 }
 
 .pagina-auth label {
     display: block;
     margin-bottom: 4px;
     font-weight: bold;
-    color: #d4d4d8;
+    color: var(--texto);
 }
 
 .opciones {
@@ -83,14 +83,14 @@
 .check-label input {
     width: auto;
     margin: 0;
-    accent-color: #facc15;
+    accent-color: var(--oro);
 }
 
 .pagina-auth button {
     margin: 5px;
     text-align: center;
-    background: linear-gradient(135deg, #ca8a04, #facc15);
-    color: #1a1400;
+    background: linear-gradient(135deg, var(--oro-oscuro), var(--oro));
+    color: var(--sobre-oro);
     font-weight: bold;
     border: none;
     padding: 10px 16px;
@@ -102,7 +102,7 @@
 
 .pagina-auth button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
+    box-shadow: 0 0 16px var(--oro-brillo);
 }
 
 .pagina-auth input {
@@ -110,16 +110,16 @@
     max-width: 350px;
     padding: 10px;
     margin: 10px 5px 10px 0;
-    background: #0b0b0e;
-    color: #f4f4f5;
-    border: 1px solid #3f3f46;
+    background: var(--bg-input);
+    color: var(--texto);
+    border: 1px solid var(--borde-input);
     border-radius: 6px;
     font-size: 1rem;
 }
 
 .pagina-auth input:focus {
-    outline: 2px solid #facc15;
-    border-color: #facc15;
+    outline: 2px solid var(--oro);
+    border-color: var(--oro);
 }
 
 .pagina-auth #datos-registrados {
@@ -128,11 +128,11 @@
 }
 
 .mensaje-ok {
-    color: #4ade80;
+    color: var(--ok);
 }
 
 .mensaje-error {
-    color: #f87171;
+    color: var(--peligro);
 }
 
 .enlace-alternativo {
@@ -140,11 +140,73 @@
 }
 
 .enlace-alternativo a {
-    color: #facc15;
+    color: var(--oro-texto);
     font-weight: bold;
     text-decoration: none;
 }
 
 .enlace-alternativo a:hover {
     text-decoration: underline;
+}
+
+/* --- Tarjeta de aviso: compra sin sesión --- */
+.aviso-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.aviso-tarjeta {
+    max-width: 420px;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+    background: var(--bg-card);
+    color: var(--texto);
+    border: 1.5px solid var(--oro);
+    border-radius: 12px;
+    box-shadow: 0 0 20px var(--oro-brillo);
+}
+
+.aviso-tarjeta h3 {
+    margin: 0 0 0.8rem;
+    color: var(--oro-titulo);
+}
+
+.aviso-tarjeta p {
+    margin: 0 0 1.2rem;
+}
+
+/* --- Botones de invitado en el header --- */
+.auth-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-auth {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    color: var(--oro-texto);
+    background: transparent;
+    border: 1px solid var(--oro-oscuro);
+    transition: box-shadow 0.2s, background 0.2s;
+}
+
+.btn-auth:hover {
+    background: rgba(var(--oro-rgb), 0.1);
+    box-shadow: 0 0 12px var(--oro-brillo);
+}
+
+.btn-auth.destacado {
+    background: rgba(var(--oro-rgb), 0.18);
+    border-color: var(--oro);
 }

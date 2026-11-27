@@ -1,13 +1,28 @@
+import { useState } from 'react'
 import { useCarrito } from '../context/CarritoContext'
+import { useSesion } from '../utils/Sesion'
+import { registrarCompra } from '../utils/Compras'
+import AvisoSesion from '../components/AvisoSesion'
 
 function Carrito() {
   const { carrito, eliminar, vaciar, total } = useCarrito()
+  const sesion = useSesion()
+  const [mostrarAviso, setMostrarAviso] = useState(false)
+  const [error, setError] = useState('')
 
   const pagar = () => {
-    if (carrito.length === 0) {
-      alert('El carrito está vacío. Agrega entradas antes de pagar.')
+    // Sin sesión no se puede comprar: se muestra la tarjeta de aviso.
+    if (!sesion) {
+      setMostrarAviso(true)
       return
     }
+    if (carrito.length === 0) {
+      setError('El carrito está vacío. Agrega entradas antes de pagar.')
+      return
+    }
+    setError('')
+    // La compra queda en el "Historial de eventos" del usuario.
+    registrarCompra(sesion.correo, carrito)
     alert('Compra realizada con éxito!')
     vaciar()
   }
@@ -38,9 +53,14 @@ function Carrito() {
         </ul>
         <div className="resumen-compra">
           <p>Total a Pagar: <strong>$ {total.toLocaleString('es-CL')}</strong></p>
+          {!sesion && carrito.length > 0 && (
+            <p className="ayuda">Debes iniciar sesión para poder pagar tus entradas.</p>
+          )}
           <button className="btn-primario" onClick={pagar}>Proceder al Pago</button>
+          {error && <p role="alert" className="mensaje-error">{error}</p>}
         </div>
       </section>
+      {mostrarAviso && <AvisoSesion onCerrar={() => setMostrarAviso(false)} />}
     </main>
   )
 }

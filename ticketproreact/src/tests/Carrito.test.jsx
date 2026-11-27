@@ -12,8 +12,13 @@ describe('Componente Carrito', () => {
   const mockEliminar = vi.fn();
   const mockVaciar = vi.fn();
 
+  const iniciarSesion = () =>
+    localStorage.setItem('sesion_activa', JSON.stringify({ nombre: 'Juan', correo: 'juan@gmail.com' }));
+
   beforeEach(() => {
     vi.clearAllMocks();
+    localStorage.clear();
+    sessionStorage.clear();
     window.alert = vi.fn(); // Mock para evitar que el alert detenga los tests
   });
 
@@ -75,7 +80,8 @@ describe('Componente Carrito', () => {
     expect(mockEliminar).toHaveBeenCalledWith(0); // 0 es el índice (i) del map
   });
 
-  test('muestra alerta de error si se intenta pagar con carrito vacío', () => {
+  test('muestra error en pantalla si se intenta pagar con carrito vacío', () => {
+    iniciarSesion();
     useCarrito.mockReturnValue({
       carrito: [],
       eliminar: mockEliminar,
@@ -88,11 +94,29 @@ describe('Componente Carrito', () => {
     const btnPagar = screen.getByText('Proceder al Pago');
     fireEvent.click(btnPagar);
 
-    expect(window.alert).toHaveBeenCalledWith('El carrito está vacío. Agrega entradas antes de pagar.');
+    expect(screen.getByText('El carrito está vacío. Agrega entradas antes de pagar.')).toBeInTheDocument();
+    expect(window.alert).not.toHaveBeenCalled();
+    expect(mockVaciar).not.toHaveBeenCalled();
+  });
+
+  test('sin sesión no permite pagar y muestra la tarjeta de aviso', () => {
+    useCarrito.mockReturnValue({
+      carrito: [{ tituloEvento: 'Concierto Rock', nombreSeccion: 'VIP', cantidad: 1, precioUnitario: 50000, subtotal: 50000 }],
+      eliminar: mockEliminar,
+      vaciar: mockVaciar,
+      total: 50000,
+    });
+
+    render(<Carrito />);
+    fireEvent.click(screen.getByText('Proceder al Pago'));
+
+    expect(screen.getByText('No puede comprar productos en TicketPro')).toBeInTheDocument();
+    expect(screen.getByText('Para poder utilizar nuestro servicio para reservar sus tickets, por favor inicie sesión con su cuenta.')).toBeInTheDocument();
     expect(mockVaciar).not.toHaveBeenCalled();
   });
 
   test('realiza el pago correctamente y vacía el carrito', () => {
+    iniciarSesion();
     useCarrito.mockReturnValue({
       carrito: [{ tituloEvento: 'Concierto Rock', nombreSeccion: 'VIP', cantidad: 1, precioUnitario: 50000, subtotal: 50000 }],
       eliminar: mockEliminar,
