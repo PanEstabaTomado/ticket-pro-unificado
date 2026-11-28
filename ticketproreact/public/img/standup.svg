@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><radialGradient id="g" cx="50%" cy="0" r="90%"><stop offset="0" stop-color="#ffd86b"/><stop offset=".35" stop-color="#7a4a10"/><stop offset="1" stop-color="#140c04"/></radialGradient>
+<linearGradient id="m" x1="0" x2="1"><stop offset="0" stop-color="#999"/><stop offset=".5" stop-color="#eee"/><stop offset="1" stop-color="#777"/></linearGradient></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<path d="M400 0 L250 450 H550Z" fill="#fff4cc" opacity=".16"/>
+<rect x="385" y="250" width="30" height="50" fill="#333"/><rect x="340" y="298" width="120" height="10" rx="5" fill="#222"/>
+<rect x="372" y="90" width="56" height="100" rx="28" fill="url(#m)"/>
+<path d="M372 120h56M372 140h56M372 160h56" stroke="#555" stroke-width="3"/>
+<path d="M364 160v10q0 40 36 40t36-40v-10" fill="none" stroke="#ddd" stroke-width="8" stroke-linecap="round"/>
+<rect x="393" y="208" width="14" height="45" fill="#bbb"/>
+<text x="400" y="355" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="38" fill="#ffd86b">STAND UP</text>
+<text x="400" y="392" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="20" fill="#fff4cc" letter-spacing="3">NOCHE DE RISAS</text>
+</svg>

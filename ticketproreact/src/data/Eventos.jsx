@@ -22,6 +22,7 @@ export const eventos = [
   {
     id: 'evento-2',
     titulo: 'Obra de Teatro: El Gran Drama',
+    imagen: '/img/teatro.svg',
     tipo: 'Teatro / Drama',
     fecha: '02 Noviembre de 2026',
     hora: '19:30',
@@ -41,7 +42,7 @@ export const eventos = [
     {
     id: 'evento-3',
     titulo: 'Noche Electrónica: Neon Pulse',
-    imagen: '/img/neon-pulse.jpg',
+    imagen: '/img/neon-pulse.svg',
     tipo: 'Música Electrónica',
     fecha: '14 Noviembre de 2026',
     hora: '22:00',
@@ -64,7 +65,7 @@ export const eventos = [
   {
     id: 'evento-4',
     titulo: 'Stand Up: Noche de Risas',
-    imagen: '/img/standup.jpg',
+    imagen: '/img/standup.svg',
     tipo: 'Comedia / Stand Up',
     fecha: '20 Noviembre de 2026',
     hora: '21:00',
@@ -86,7 +87,7 @@ export const eventos = [
   {
     id: 'evento-5',
     titulo: 'Clásico Universitario',
-    imagen: '/img/futbol.jpg',
+    imagen: '/img/futbol.svg',
     tipo: 'Deporte / Fútbol',
     fecha: '28 Noviembre de 2026',
     hora: '18:00',
@@ -109,7 +110,7 @@ export const eventos = [
   {
     id: 'evento-6',
     titulo: 'Orquesta Sinfónica: Noche de Gala',
-    imagen: '/img/sinfonica.jpg',
+    imagen: '/img/sinfonica.svg',
     tipo: 'Música Clásica',
     fecha: '05 Diciembre de 2026',
     hora: '20:30',
@@ -131,7 +132,7 @@ export const eventos = [
   {
     id: 'evento-7',
     titulo: 'Festival de Comida y Música',
-    imagen: '/img/festival-comida.jpg',
+    imagen: '/img/festival-comida.svg',
     tipo: 'Festival',
     fecha: '12 Diciembre de 2026',
     hora: '12:00',
