@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><radialGradient id="g" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#8a1c2b"/><stop offset="1" stop-color="#2a0710"/></radialGradient>
+<linearGradient id="c" x1="0" x2="1"><stop offset="0" stop-color="#5a0f1b"/><stop offset=".5" stop-color="#9b2335"/><stop offset="1" stop-color="#5a0f1b"/></linearGradient></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<path d="M0 0h140q-30 140-10 450H0zM800 0H660q30 140 10 450h130z" fill="url(#c)"/>
+<path d="M400 40 L240 450 H560Z" fill="#f3d487" opacity=".12"/>
+<g transform="translate(335 150)"><path d="M0 0q45-18 90 0v60q0 55-45 70q-45-15-45-70z" fill="#f3d487"/>
+<path d="M15 38q14-10 24 2M75 38q-14-10-24 2" stroke="#2a0710" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M20 85q25 28 50 0" stroke="#2a0710" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+<g transform="translate(405 175) rotate(10)"><path d="M0 0q45-18 90 0v60q0 55-45 70q-45-15-45-70z" fill="#d4a83a"/>
+<path d="M15 42q14 10 24-2M75 42q-14 10-24-2" stroke="#2a0710" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M20 100q25-28 50 0" stroke="#2a0710" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+<text x="400" y="355" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="34" fill="#f3d487">EL GRAN DRAMA</text>
+<text x="400" y="392" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="18" fill="#f0cf7a" letter-spacing="4">TEATRO</text>
+</svg>

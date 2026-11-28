@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b1030"/><stop offset="1" stop-color="#0a0614"/></linearGradient></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<g stroke="#d4a83a" stroke-width="2" opacity=".55"><path d="M0 120H800M0 140H800M0 160H800M0 180H800M0 200H800"/></g>
+<g fill="#f3d487"><ellipse cx="270" cy="180" rx="14" ry="10" transform="rotate(-20 270 180)"/><rect x="281" y="95" width="4" height="86"/>
+<ellipse cx="520" cy="160" rx="14" ry="10" transform="rotate(-20 520 160)"/><rect x="531" y="75" width="4" height="86"/>
+<ellipse cx="440" cy="200" rx="14" ry="10" transform="rotate(-20 440 200)"/><rect x="451" y="115" width="4" height="86"/><path d="M451 115L535 75V90L451 130z"/></g>
+<g transform="translate(400 150)" fill="none" stroke="#f3d487" stroke-width="9" stroke-linecap="round"><path d="M5 -80C-40 -55 -35 -10 0 0C40 8 50 -45 15 -48C-15 -50 -20 -10 5 -6M5 -105V60C5 95 -45 95 -45 62C-40 40 -10 45 5 60"/></g>
+<circle cx="400" cy="145" r="120" fill="#d4a83a" opacity=".08"/>
+<text x="400" y="355" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="30" fill="#f3d487">ORQUESTA SINFÓNICA</text>
+<text x="400" y="392" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="18" fill="#fff" letter-spacing="5">NOCHE DE GALA</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset="1" stop-color="#c23b22"/></linearGradient></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<path d="M0 40Q200 110 400 50T800 40" fill="none" stroke="#3a1608" stroke-width="3"/>
+<g><circle cx="80" cy="75" r="11" fill="#ffe066"/><circle cx="200" cy="92" r="11" fill="#7ee081"/><circle cx="320" cy="80" r="11" fill="#ff5d8f"/><circle cx="440" cy="68" r="11" fill="#ffe066"/><circle cx="560" cy="85" r="11" fill="#7ee081"/><circle cx="680" cy="80" r="11" fill="#ff5d8f"/></g>
+<g transform="translate(400 190)"><circle r="85" fill="#fff4e0"/><circle r="68" fill="none" stroke="#c23b22" stroke-width="5"/>
+<path d="M-26-45v35q0 10 8 10v45M-8-45v35M-44-45v35q0 10 8 10M-26-45V-10" stroke="#3a1608" stroke-width="6" fill="none" stroke-linecap="round" transform="translate(-24 0)"/>
+<path d="M30-50q22 25 8 60v40" stroke="#3a1608" stroke-width="7" fill="none" stroke-linecap="round" transform="translate(18 0)"/></g>
+<text x="400" y="355" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="32" fill="#fff4e0">FESTIVAL DE COMIDA</text>
+<text x="400" y="392" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="20" fill="#3a1608" letter-spacing="4">Y MÚSICA</text>
+</svg>

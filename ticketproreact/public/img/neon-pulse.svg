@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12002e"/><stop offset="1" stop-color="#001d3d"/></linearGradient>
+<filter id="b"><feGaussianBlur stdDeviation="4"/></filter></defs>
+<rect width="800" height="450" fill="url(#g)"/>
+<g fill="none" stroke-width="5"><g filter="url(#b)" opacity=".9"><circle cx="400" cy="190" r="120" stroke="#ff2bd6"/><circle cx="400" cy="190" r="85" stroke="#00e5ff"/></g>
+<circle cx="400" cy="190" r="120" stroke="#ff2bd6"/><circle cx="400" cy="190" r="85" stroke="#00e5ff"/><circle cx="400" cy="190" r="50" stroke="#ff2bd6" opacity=".7"/></g>
+<path d="M0 190h250l12-40 18 80 20-110 22 150 18-80 12 0h88l12-30 16 60 12-30h120" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" opacity=".95"/>
+<path d="M0 190h250l12-40 18 80 20-110 22 150 18-80 12 0h88l12-30 16 60 12-30h120" fill="none" stroke="#00e5ff" stroke-width="10" opacity=".35" filter="url(#b)"/>
+<text x="400" y="355" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="44" fill="#fff" letter-spacing="2">NEON PULSE</text>
+<text x="400" y="392" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" text-anchor="middle" font-size="18" fill="#00e5ff" letter-spacing="5">NOCHE ELECTRÓNICA</text>
+</svg>
